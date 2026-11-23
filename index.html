@@ -153,6 +153,34 @@ footer{padding:24px 16px 22px}
   .bar .btn{font-size:15px}
 }
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* Seguimiento: tarjeta en la misma línea visual que el resto de ActivaMente */
+.followup-section{
+  display:grid;
+  grid-template-columns:110px minmax(0,1fr);
+  align-items:center;
+  gap:clamp(18px,3vw,30px);
+  padding:clamp(20px,3vw,34px);
+  margin:24px 0;
+  background:var(--c1);
+  border:2px solid var(--line);
+  border-radius:26px;
+}
+.followup-app{display:flex;flex-direction:column;align-items:center;gap:10px;min-width:0;text-align:center;font:700 15px/1.3 Rubik,system-ui,sans-serif}
+.followup-icon{width:94px;height:94px;display:grid;place-items:center;background:#fff;border:1px solid rgba(59,38,35,.1);border-radius:22px;box-shadow:0 3px 12px rgba(59,38,35,.09)}
+.followup-icon svg{display:block;width:67px;height:67px}
+.followup-content{min-width:0}
+.followup-content h2{font-size:clamp(24px,3vw,32px);line-height:1.2;margin:0 0 12px}
+.followup-content p{font-size:clamp(17px,1.65vw,19px);margin:0 0 16px;color:var(--mut)}
+.followup-content .btn{margin:4px 0 0}
+.followup-content .followup-help{font-size:15px;margin:12px 0 0}
+@media(max-width:520px){
+  .followup-section{grid-template-columns:minmax(0,1fr)}
+  .followup-app{flex-direction:row;justify-content:flex-start;text-align:left}
+  .followup-icon{width:70px;height:70px;border-radius:18px}
+  .followup-icon svg{width:52px;height:52px}
+  .followup-content .btn{width:100%}
+}
 </style>
 </head>
 <body>
@@ -172,7 +200,7 @@ var APP_LOGOS={
   impulse:{name:"Impulse",img:"https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/de/69/75/de6975c2-99ca-f79f-5088-4ef0bd88bb1c/Placeholder.mill/1200x630wa.jpg",fallback:"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9Im8iIHgxPSIwIiB4Mj0iMSIgeTE9IjEiIHkyPSIwIj48c3RvcCBzdG9wLWNvbG9yPSIjMTljYWQwIi8+PHN0b3Agb2Zmc2V0PSIuNTQiIHN0b3AtY29sb3I9IiM1OTZjZmIiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNlYjI0YjMiLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0iYiIgeDE9IjAiIHgyPSIxIj48c3RvcCBzdG9wLWNvbG9yPSIjMDM1ZTcwIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMzgyMDRmIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjEyOCIgaGVpZ2h0PSIxMjgiIHJ4PSIyNSIgZmlsbD0id2hpdGUiLz48cGF0aCBkPSJNNDkgMTEwaDQ4Vjc5YzgtMTMgMTItMjEgNy0zOS01LTE5LTI0LTI4LTQ0LTI0LTE4IDMtMzAgMTYtMzIgMzNsLTkgMTkgMTEgOCAyIDEzYzEgOSA2IDEyIDE3IDEyWiIgZmlsbD0idXJsKCNiKSIgc3Ryb2tlPSJ1cmwoI28pIiBzdHJva2Utd2lkdGg9IjQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48Y2lyY2xlIGN4PSI1NSIgY3k9IjQ5IiByPSIxOSIgZmlsbD0iI2ZhOGZiNCIvPjxjaXJjbGUgY3g9IjgxIiBjeT0iNDkiIHI9IjE3IiBmaWxsPSIjYTY1YWYzIi8+PGNpcmNsZSBjeD0iMTAwIiBjeT0iNjAiIHI9IjEyIiBmaWxsPSIjMzRkYmM5Ii8+PC9zdmc+"},
   todoist:{name:"Todoist",img:"https://static1.squarespace.com/static/53641394e4b0a8d04d9364c7/536414ebe4b08e20f53c899c/6154277b3bdf4b03a5f13ee0/1751620463108/Todoist%2BLogo.png?format=1500w",fallback:"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij48cmVjdCB3aWR0aD0iMTI4IiBoZWlnaHQ9IjEyOCIgcng9IjI0IiBmaWxsPSIjZTQ0MzMyIi8+PGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSI5LjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTE4IDM4IDQzIDU0IDg5IDI1Ii8+PHBhdGggZD0iTTE4IDY0IDQzIDgwIDg5IDUxIi8+PHBhdGggZD0iTTE4IDkwIDQzIDEwNiA4OSA3NyIvPjwvZz48L3N2Zz4="}
 };
-var NAV=[["inicio","Inicio"],["recursos","Recursos"],["videotutorial","Videotutorial"],["familia","Familia"],["juego","Juego"],["contacto","Contacto"]];
+var NAV=[["inicio","Inicio"],["recursos","Recursos"],["videotutorial","Videotutorial"],["familia","Familia"],["juego","Juego"],["seguimiento","Seguimiento"],["contacto","Contacto"]];
 var P={
 "comenzar":{n:"Bienvenida",e:"Bienvenida",h:"Qué <em>encontrarás</em>",l:"Herramientas sencillas para acompañarte en las actividades de todos los días.",how:["Lea las 3 tarjetas de colores.","Presione el botón «Explorar recursos»."],img:"fam",c:[["01","Recordatorios","Apoyo para tareas cotidianas."],["02","Acompañamiento","Estrategias para acompañar sin perder autonomía."],["03","Tecnología accesible","Aplicaciones fáciles de utilizar."]],back:"inicio",next:["recursos","Explorar recursos"]},
 "recursos":{n:"Recursos",e:"Recursos",h:"Elige por dónde <em>empezar</em>",l:"Explora una actividad o encuentra orientación para acompañar a tu familia.",how:["Toque la tarjeta que le interese.","Para volver, use el botón «Atrás» de abajo."],c:[["","Organiza tus compras","Usa listas digitales para comprar con tranquilidad.","compra-sin-olvidos","Ver más"],["","Atención y memoria","Descubre actividades y estrategias para practicar.","atencion-y-memoria","Ver más"],["","Apoyo familiar para la autonomía","Ideas para acompañar sin reemplazar.","familia","Ver más"]],back:"comenzar"},
@@ -180,8 +208,9 @@ var P={
 "atencion-y-memoria":{n:"Atención y memoria",e:"Atención y memoria",h:"Actividades para <em>atención</em> y memoria",l:"Ideas sencillas para ejercitar habilidades y organizar actividades cotidianas.",how:["Lea las 3 ideas.","Puede probar una distinta cada día."],img:"mind",tall:1,c:[["01","Aplicaciones cognitivas","Juegos para ejercitar memoria, atención, concentración y razonamiento.","","",""],["02","Estrategias cotidianas","Herramientas para organizar actividades y recordar responsabilidades.","","","Agenda · Alarmas · Lista de tareas"],["03","Actividades para practicar","Ejercicios breves para realizar desde casa.","","","Memorizar imágenes · Ordenar secuencias · Buscar diferencias"]],back:"recursos"},
 "videotutorial":{n:"Videotutorial",e:"Videotutorial",h:"Aprende <em>paso a paso</em>",l:"Una guía para organizar tus compras con ayuda de herramientas digitales.",how:["Presione ▶ para reproducir el videotutorial.","Puede pausar, retroceder o ampliar el video cuando lo necesite.","Al terminar, presione «Siguiente»."],c:[["01","Crea una lista",""],["02","Organiza productos",""],["03","Marca compras realizadas",""],["04","Revisa antes de pagar",""]],video:true,back:"inicio",next:["familia","Siguiente: Familia"]},
 "familia":{n:"Familia",e:"Familia",h:"Estrategias para la <em>familia</em>",l:"El apoyo familiar es más efectivo cuando promueve la independencia y no reemplaza las capacidades conservadas.",how:["Lea las 3 estrategias.","Luego presione «Siguiente»."],img:"fam",c:[["","Fomentar el uso de ayudas digitales","Ayude a utilizar listas de compras, recordatorios y alarmas del celular antes de realizar actividades importantes."],["","Supervisar sin reemplazar","Permita que la persona realice la tarea por sí misma y entregue apoyo solo cuando sea necesario."],["","Reducir distractores","Favorezca entornos tranquilos para actividades que requieren concentración y organización."]],back:"inicio",next:["juego","Siguiente: Juego"]},
-"juego":{n:"Juego",e:"Juego de supermercado",h:"Vamos de <em>compras</em>",l:"Practica la organización de una lista con un ejemplo de compras.",intro:"Un espacio para practicar cómo preparar y revisar una lista antes de comprar.",how:["Mire la lista de compras de hoy.","Presione el botón «Jugar ahora».","Al terminar, cierre esa pestaña para volver aquí."],img:"cart",tall:1,chipsT:"Nuestra lista de compras de hoy",chips:["Yogurt","Arroz","Detergente","Papel higiénico","Fideos","Leche"],game:true,back:"familia",next:["contacto","Siguiente: Contacto"]},
-"contacto":{n:"Contacto",e:"Contacto",h:"Pequeños pasos, <em>grandes logros</em>",l:"Mantener tu independencia es posible con apoyo y tecnología.",how:["Toque la opción que prefiera para escribirnos o llamarnos."],contact:true,back:"juego",next:["inicio","Ir al inicio"]}
+"juego":{n:"Juego",e:"Juego de supermercado",h:"Vamos de <em>compras</em>",l:"Practica la organización de una lista con un ejemplo de compras.",intro:"Un espacio para practicar cómo preparar y revisar una lista antes de comprar.",how:["Mire la lista de compras de hoy.","Presione el botón «Jugar ahora».","Al terminar, cierre esa pestaña para volver aquí."],img:"cart",tall:1,chipsT:"Nuestra lista de compras de hoy",chips:["Yogurt","Arroz","Detergente","Papel higiénico","Fideos","Leche"],game:true,back:"familia",next:["seguimiento","Siguiente: Seguimiento"]},
+"seguimiento":{n:"Seguimiento",e:"Seguimiento",h:"<em>Seguimiento</em>",l:"Cuéntanos cómo te fue utilizando las herramientas y realizando las actividades de ActivaMente.",how:["Presione «Responder encuesta» para abrir Google Forms.","Responda las preguntas sobre su experiencia con las actividades y aplicaciones.","Cuando termine, puede cerrar esa pestaña para volver a ActivaMente."],followup:true,back:"juego",next:["contacto","Siguiente: Contacto"]},
+"contacto":{n:"Contacto",e:"Contacto",h:"Pequeños pasos, <em>grandes logros</em>",l:"Mantener tu independencia es posible con apoyo y tecnología.",how:["Toque la opción que prefiera para escribirnos o llamarnos."],contact:true,back:"seguimiento",next:["inicio","Ir al inicio"]}
 };
 function photo(k,tall,chips){return '<div class="ph'+(tall?' tall':'')+'"><img src="'+IMG[k]+'" alt="">'+(chips?'<span class="fl a">Paso a paso</span><span class="fl b">Sin prisa</span>':'')+'</div>'}
 function how(a){return '<div class="how"><b>¿Qué hacer aquí?</b><ol>'+a.map(function(x){return '<li>'+x+'</li>'}).join("")+'</ol></div>'}
@@ -236,6 +265,35 @@ function loadTutorialPlayer(event) {
   frame.replaceChildren(iframe);
   if (moveFocus) iframe.focus({ preventScroll: true });
 }
+
+function seguimientoSection(){
+  return `
+    <section class="followup-section" aria-labelledby="followup-heading">
+      <div class="followup-app">
+        <span class="followup-icon">
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ícono de Google Forms">
+            <path fill="#7248B9" d="M14 4h26l13 13v37a6 6 0 0 1-6 6H14a6 6 0 0 1-6-6V10a6 6 0 0 1 6-6Z"/>
+            <path fill="#512DA8" d="M40 4v12a2 2 0 0 0 2 2h11Z"/>
+            <g fill="#fff">
+              <circle cx="20" cy="30" r="3.5"/>
+              <circle cx="20" cy="41" r="3.5"/>
+              <circle cx="20" cy="52" r="3.5"/>
+              <rect x="28" y="27.5" width="17" height="5" rx="2.5"/>
+              <rect x="28" y="38.5" width="17" height="5" rx="2.5"/>
+              <rect x="28" y="49.5" width="17" height="5" rx="2.5"/>
+            </g>
+          </svg>
+        </span>
+        <span>Google Forms</span>
+      </div>
+      <div class="followup-content">
+        <h2 id="followup-heading">Formulario de seguimiento</h2>
+        <p>Tu opinión es importante. Comparte cómo ha sido tu experiencia con las actividades y herramientas digitales que conociste.</p>
+        <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLScHSMAiAptxt696tY-8j0cJhj6G9WyfZknQrJI5KOZVTzYmig/viewform?usp=header" target="_blank" rel="noopener noreferrer">Responder encuesta <span aria-hidden="true">↗</span></a>
+        <p class="followup-help">El formulario se abrirá en una nueva pestaña.</p>
+      </div>
+    </section>`;
+}
 function appLogos(keys){return '<div class="app-list" aria-label="Aplicaciones recomendadas">'+keys.map(function(key){var a=APP_LOGOS[key];return '<div class="app-item"><span class="app-icon"><img src="'+a.fallback+'" data-remote="'+a.img+'" alt="Logo de '+a.name+'" loading="lazy" decoding="async" referrerpolicy="no-referrer"></span><span>'+a.name+'</span></div>'}).join('')+'</div>'}
 function upgradeLogos(){
   document.querySelectorAll(".app-icon img[data-remote]").forEach(function(el){
@@ -251,7 +309,7 @@ var h="",bar="";
 if(r==="inicio"){
 h='<section class="split"><div><span class="here">Usted está en: Inicio</span><h1>Tecnología para mantener tu <em>independencia</em></h1><p class="lead">Herramientas digitales para apoyar la memoria, la organización y las actividades diarias.</p><a class="btn" href="#comenzar">Comenzar →</a>'+how(["Presione el botón «Comenzar».","Lea cada tarjeta con calma.","Use los botones grandes de abajo para avanzar o volver."])+'</div>'+photo("fam",0,1)+'</section>'
 +'<h2 style="font-size:32px;margin-top:48px">Un paso a la vez</h2><p class="lead" style="margin-bottom:0">Explora recursos sencillos para acompañarte en tu día a día. Toque una tarjeta para entrar.</p><div class="grid">'
-+[["01","Videotutorial","Aprende a organizar tu lista de compras paso a paso.","videotutorial"],["02","Familia","Ideas para acompañar y promover la independencia.","familia"],["03","Juego de supermercado","Practica con un ejemplo de compras.","juego"],["04","Contacto","Conversemos y mantengámonos en contacto.","contacto"]].map(function(c){return '<a class="card" href="#'+c[3]+'"><div class="num">'+c[0]+'</div><h3>'+c[1]+'</h3><p>'+c[2]+'</p><span class="more">Ver recurso →</span></a>'}).join("")+'</div>';
++[["01","Videotutorial","Aprende a organizar tu lista de compras paso a paso.","videotutorial"],["02","Familia","Ideas para acompañar y promover la independencia.","familia"],["03","Juego de supermercado","Practica con un ejemplo de compras.","juego"],["04","Seguimiento","Cuéntanos cómo te fue con las actividades.","seguimiento"],["05","Contacto","Conversemos y mantengámonos en contacto.","contacto"]].map(function(c){return '<a class="card" href="#'+c[3]+'"><div class="num">'+c[0]+'</div><h3>'+c[1]+'</h3><p>'+c[2]+'</p><span class="more">Ver recurso →</span></a>'}).join("")+'</div>';
 }else{
 var p=P[r];
 var head='<span class="here">Usted está en: '+p.n+'</span><h1>'+p.h+'</h1><p class="lead">'+p.l+'</p>'+(p.intro?'<p>'+p.intro+'</p>':'')+(p.video?'':how(p.how));
@@ -260,7 +318,8 @@ if(p.video)h+=videoTutorial(p.how);
 if(p.c){h+='<div class="grid">'+p.c.map(function(c,i){var t=c[3]?'a':'div',a=c[3]?' href="#'+c[3]+'"':'';var logos=r==="atencion-y-memoria"&&i===0?appLogos(["brainilis","lumosity","impulse"]):r==="atencion-y-memoria"&&i===1?appLogos(["todoist"]):"";return '<'+t+' class="card"'+a+'>'+(c[0]?'<div class="num">'+c[0]+'</div>':'')+'<h3>'+c[1]+'</h3>'+(c[2]?'<p>'+c[2]+'</p>':'')+(c[5]?'<p class="tag">'+c[5]+'</p>':'')+logos+(c[4]?'<span class="more">'+c[4]+' →</span>':'')+'</'+t+'>'}).join("")+'</div>'}
 if(p.note)h+='<div class="note">'+p.note+'</div>';
 if(p.chips)h+='<h2 style="font-size:26px;margin-top:8px">'+p.chipsT+'</h2><div class="chips">'+p.chips.map(function(c){return '<span class="chip">'+c+'</span>'}).join("")+'</div>';
-if(p.game)h+='<a class="btn" href="'+GAME+'" target="_blank" rel="noopener">▶ Jugar ahora</a><p style="color:var(--mut);font-size:18px">El juego se abrirá en una nueva pestaña.</p>';
+if(p.followup)h+=seguimientoSection();
+ if(p.game)h+='<a class="btn" href="'+GAME+'" target="_blank" rel="noopener">▶ Jugar ahora</a><p style="color:var(--mut);font-size:18px">El juego se abrirá en una nueva pestaña.</p>';
 if(p.contact)h+='<div class="grid"><a class="card" href="https://instagram.com/fono_activamente" target="_blank" rel="noopener"><div class="num">IG</div><h3>Instagram</h3><p>@fono_activamente</p></a><a class="card" href="https://wa.me/56968606941" target="_blank" rel="noopener"><div class="num">WA</div><h3>WhatsApp</h3><p>+56 9 6860 6941</p></a><a class="card" href="tel:+56968200135"><div class="num">☎</div><h3>Teléfono</h3><p>+56 9 6820 0135</p></a></div>';
 bar=(p.next?'<a class="btn nx" href="#'+p.next[0]+'">'+p.next[1]+' →</a>':'')+'<a class="btn o" href="#'+p.back+'">← Atrás</a><a class="btn o" href="#inicio">⌂ Inicio</a>';
 }
