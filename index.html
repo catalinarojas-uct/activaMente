@@ -181,6 +181,48 @@ footer{padding:24px 16px 22px}
   .followup-icon svg{width:52px;height:52px}
   .followup-content .btn{width:100%}
 }
+
+/* Guía descargable: complemento del videotutorial de compras */
+.guide-resource {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(16px, 2.5vw, 26px);
+  margin: 0 0 28px;
+  padding: clamp(20px, 3vw, 32px);
+  background: var(--yel);
+  border: 2px solid #F3D66B;
+  border-radius: 26px;
+}
+.guide-icon {
+  display: grid;
+  place-items: center;
+  width: 78px;
+  height: 78px;
+  flex-shrink: 0;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 3px 12px rgba(59, 38, 35, .08);
+}
+.guide-icon svg { width: 47px; height: 55px; display: block; }
+.guide-content { min-width: 0; }
+.guide-content h2 {
+  font-size: clamp(23px, 3vw, 30px);
+  line-height: 1.2;
+  margin: 0 0 10px;
+}
+.guide-content p {
+  color: var(--mut);
+  font-size: clamp(17px, 1.65vw, 19px);
+  margin: 0 0 18px;
+}
+.guide-content .btn { width: 100%; }
+.guide-content .guide-hint { font-size: 15px; margin: 12px 0 0; }
+@media (min-width: 700px) {
+  .guide-resource { grid-template-columns: 92px minmax(0, 1fr); }
+  .guide-content .btn { width: auto; }
+}
+
 </style>
 </head>
 <body>
@@ -229,6 +271,24 @@ function videoTutorial(instructions) {
         <p class="video-status" role="status"></p>
         <a class="video-link" href="https://www.youtube.com/shorts/${tutorialVideoId}"
           target="_blank" rel="noopener">Ver en YouTube</a>
+      </div>
+    </section>
+    <section class="guide-resource" aria-labelledby="guide-heading">
+      <span class="guide-icon" aria-hidden="true">
+        <svg viewBox="0 0 48 56" xmlns="http://www.w3.org/2000/svg" focusable="false">
+          <path d="M9 2h22l13 13v35a4 4 0 0 1-4 4H9a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Z" fill="#FFF" stroke="#A44F40" stroke-width="2.5"/>
+          <path d="M31 2v12a2 2 0 0 0 2 2h11" fill="#FDE9E3" stroke="#A44F40" stroke-width="2.5" stroke-linejoin="round"/>
+          <rect x="8" y="29" width="36" height="17" rx="4" fill="#A44F40"/>
+          <text x="26" y="40.5" fill="#FFF" text-anchor="middle" font-size="12" font-family="Arial, sans-serif" font-weight="700">PDF</text>
+        </svg>
+      </span>
+      <div class="guide-content">
+        <h2 id="guide-heading">Guía visual para realizar compras sin olvidos</h2>
+        <p>Complementa el videotutorial con esta guía ilustrada. Podrás repasar los cuatro pasos para organizar tu lista, marcar los productos y revisar tus compras antes de pagar.</p>
+        <a class="btn" href="./INFOGRAFIA.pdf" download="Guia_visual_compras_sin_olvidos.pdf" type="application/pdf" aria-label="Descargar Guía visual para realizar compras sin olvidos en formato PDF">
+          <span aria-hidden="true">↓</span> Descargar guía en PDF
+        </a>
+        <p class="guide-hint">Puedes guardarla en tu celular o imprimirla para consultarla cuando quieras.</p>
       </div>
     </section>`;
 }
